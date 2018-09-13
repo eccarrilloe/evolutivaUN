@@ -13,24 +13,36 @@ public class Rastrigin implements OptimizableFunction {
   }
 
   public double f(double[] x) {
-    double res = this.A * this.d;
+    double result = this.A * this.d;
 
     for (int i = 0; i < this.d; i++) {
-            res += Math.pow(x[i], 2) - A * Math.cos(2 * Math.PI * x[i]);
+      result += Math.pow(x[i], 2) - A * Math.cos(2 * Math.PI * x[i]);
+    }
+
+    return result;
+  }
+
+  public double[] gradient(double[] x) {
+    double[] res = new double[this.d];
+
+    for (int i = 0; i < this.d; i++) {
+      res[i] = 2 * x[i] + (this.A * 2 * Math.PI * Math.sin(2 * Math.PI * x[i]));
     }
 
     return res;
-  }
-
-  public boolean factible(double[] x) {
-    return false;
   }
 
   public int getDimensions() {
     return this.d;
   }
 
-  public double getInitialPoint() {
-    return - this.limit + (Math.random() * this.limit * 2);
+  public double[] getInitialPoint() {
+    double[] intialPoint = new double[this.d];
+    for (int i = 0; i < this.d; i++) {
+      intialPoint[i] = -this.limit + (Math.random() * this.limit * 2);
+    }
+
+    // return new double[]{0.5, 0.5};
+    return intialPoint;
   }
 }
