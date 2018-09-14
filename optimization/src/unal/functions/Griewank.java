@@ -42,8 +42,17 @@ public class Griewank implements OptimizableFunction {
       result[i] += minusCos;
     }
 
-
     return result;
+  }
+
+  public boolean factible(double[] x) {
+    boolean factible = true;
+
+    for (int i = 0; i < x.length; i++) {
+      factible = factible && x[i] >= -limit && x[i] <= limit;
+    }
+
+    return factible;
   }
 
   public int getDimensions() {
@@ -51,7 +60,13 @@ public class Griewank implements OptimizableFunction {
   }
 
   public double[] getInitialPoint() {
-    return new double[]{0.0};
+    double[] initialPoint = new double[this.d];
+
+    for (int i = 0; i < this.d; i++) {
+      initialPoint[i] = -this.limit + (Math.random() * this.limit * 2);
+    }
+
+    return initialPoint;
   }
 
   public static void main(String[] args) {

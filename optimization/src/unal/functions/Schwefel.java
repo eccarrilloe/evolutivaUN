@@ -30,11 +30,27 @@ public class Schwefel implements OptimizableFunction {
     return result;
   }
 
+  public boolean factible(double[] x) {
+    boolean factible = true;
+
+    for (int i = 0; i < x.length; i++) {
+      factible = factible && x[i] >= -limit && x[i] <= limit;
+    }
+
+    return factible;
+  }
+
   public int getDimensions() {
     return this.d;
   }
 
   public double[] getInitialPoint() {
-    return new double[]{0.0};
+    double[] initialPoint = new double[this.d];
+
+    for (int i = 0; i < this.d; i++) {
+      initialPoint[i] = -this.limit + (Math.random() * this.limit * 2);
+    }
+
+    return initialPoint;
   }
 }
