@@ -16,6 +16,9 @@ public class HillClimbingGauss implements Optimizable {
 
   public double[] optimize(OptimizableFunction f) {
     double[] x0 = f.getInitialPoint();
+    double[] results = new double[this.iterations + 1];
+
+    results[0] = f.f(x0);
 
     for (int i = 0; i < this.iterations; i++) {
       double[] x1 = x0.clone();
@@ -29,9 +32,9 @@ public class HillClimbingGauss implements Optimizable {
           x0 = x1;
       }
 
-      System.out.println(String.format("#%d: [%.8f, %.8f] => %.8f", i + 1, x0[0], x0[1], f.f(x0)));
+      results[i + 1] = f.f(x0);
     }
 
-    return x0;
+    return results;
   }
 }

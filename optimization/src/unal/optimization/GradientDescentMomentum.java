@@ -16,10 +16,13 @@ public class GradientDescentMomentum implements Optimizable {
   public double[] optimize(OptimizableFunction f) {
     double[] x0 = f.getInitialPoint();
     double[] delta = new double[f.getDimensions()];
+    double[] results = new double[this.iterations + 1];
 
     for (int i = 0; i < delta.length; i++) {
       delta[i] = 0;
     }
+
+    results[0] = f.f(x0);
 
     for (int i = 0; i < this.iterations; i++) {
       double[] x1 = x0.clone();
@@ -30,11 +33,11 @@ public class GradientDescentMomentum implements Optimizable {
         x1[j] += delta[j];
       }
 
-      System.out.println(String.format("#%d: [%.8f, %.8f] => %.8f", i + 1, x1[0], x1[1], f.f(x1)));
+      results[i + 1] = f.f(x1);
 
       x0 = x1;
     }
 
-    return x0;
+    return results;
   }
 }

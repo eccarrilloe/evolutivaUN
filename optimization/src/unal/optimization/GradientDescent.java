@@ -1,6 +1,7 @@
 package unal.optimization;
 
 import unal.functions.OptimizableFunction;
+import java.util.Arrays;
 
 public class GradientDescent implements Optimizable {
   private int iterations;
@@ -13,6 +14,9 @@ public class GradientDescent implements Optimizable {
 
   public double[] optimize(OptimizableFunction f) {
     double[] x0 = f.getInitialPoint();
+    double[] results = new double[this.iterations + 1];
+
+    results[0] = f.f(x0);
 
     for (int i = 0; i < this.iterations; i++) {
       double[] x1 = x0.clone();
@@ -22,11 +26,15 @@ public class GradientDescent implements Optimizable {
         x1[j] += -(this.alpha * gradient[j]);
       }
 
-      System.out.println(String.format("#%d: [%.8f, %.8f] => %.8f", i + 1, x1[0], x1[1], f.f(x1)));
+      results[i + 1] = f.f(x1);
+
 
       x0 = x1;
     }
 
-    return x0;
+    System.out.println(Arrays.toString(results));
+    System.out.println();
+    
+    return results;
   }
 }
