@@ -45,4 +45,11 @@ public class Rastrigin implements OptimizableFunction {
     // return new double[]{0.5, 0.5};
     return intialPoint;
   }
+
+  public static void main(String[] args) {
+    Rastrigin rt = new Rastrigin(10, 2);
+    double[] x = new double[]{5.12, 5.12};
+    double res = rt.f(x);
+    System.out.println(res);
+  }
 }
