@@ -42,8 +42,8 @@ public class Rastrigin implements OptimizableFunction {
       intialPoint[i] = -this.limit + (Math.random() * this.limit * 2);
     }
 
-    // return new double[]{0.5, 0.5};
-    return intialPoint;
+    return new double[]{0.5, 0.5};
+    // return intialPoint;
   }
 
   public static void main(String[] args) {

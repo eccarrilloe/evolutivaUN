@@ -30,6 +30,10 @@ public class Schwefel implements OptimizableFunction {
     return result;
   }
 
+  public int getDimensions() {
+    return this.d;
+  }
+
   public double[] getInitialPoint() {
     return new double[]{0.0};
   }
