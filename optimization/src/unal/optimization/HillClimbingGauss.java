@@ -4,7 +4,6 @@ import unal.functions.OptimizableFunction;
 import java.util.Random;
 
 public class HillClimbingGauss implements Optimizable {
-
   private double sigma;
   private int iterations;
   private Random random;
